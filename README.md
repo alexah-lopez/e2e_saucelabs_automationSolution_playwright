@@ -1,1 +1,0 @@
-# e2e_saucelabs_automationSolution_playwright
