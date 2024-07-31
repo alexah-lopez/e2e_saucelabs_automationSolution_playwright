@@ -15,7 +15,7 @@ Frameworks and libraries used:
 Programing language:
 * JavaScript
 	
-	
+	 
 <!-- GETTING STARTED -->
 ## Getting Started
 	
