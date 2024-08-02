@@ -1,14 +1,17 @@
-import { test, expect } from '@playwright/test';
+import {test, expect} from '@playwright/test';
 import CatalogPage from '../src/CatalogPage';
 import LoginPage from '../src/loginPage';
 
 
-test('Successfull login', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+  console.log(`Running ${test.info().title}`);
   await page.goto('https://www.saucedemo.com/');
-  let loginPage = new LoginPage(page);
-  await loginPage.submitLoginForm('standard_user','secret_sauce');
-  let catalogPage= new CatalogPage(page);
-  expect(catalogPage.productTitle).toHaveText('Products')
+});
+
+test('Successfull login', async ({ page }) => {
+  new LoginPage(page).submitLoginForm('standard_user','secret_sauce');
+  //await loginPage.submitLoginForm('standard_user','secret_sauce');
+  await expect(new CatalogPage(page).productTitle).toHaveText('Products')
 })
 
 

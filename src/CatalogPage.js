@@ -1,9 +1,9 @@
 class CatalogPage
 {
     constructor(page){
-        this.productTitle = page.getByText('Products')
+        this.productTitle = page.getByTestId('title')
     }
 
 
 }
-export default CatalogPage
+export default CatalogPage;
