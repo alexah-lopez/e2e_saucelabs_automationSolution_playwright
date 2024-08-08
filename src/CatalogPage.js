@@ -3,7 +3,6 @@
  * catalog page using different locators
  */
 class CatalogPage {
-  /** @param {page=} page */
   constructor(page) {
     this.productTitle = page.getByTestId("title");
   }

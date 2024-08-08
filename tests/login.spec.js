@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto("https://www.saucedemo.com/");
 });
 
-test("Successfull login", async ({ page }) => {
+test("Successful login", async ({ page }) => {
   const loginPage = new LoginPage(page); //mejor practica
   await loginPage.submitLoginForm("standard_user", "secret_sauce");
   const catalogPage = new CatalogPage(page);

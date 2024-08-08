@@ -4,17 +4,17 @@
  * and contains the function to perform the login action
  */
 class LoginPage {
-  /** @param {page=} page */
   constructor(page) {
-    this.usernameInput = page.getByPlaceholder("Username");
-    this.passwordInput = page.getByPlaceholder("Password");
-    this.submitButton = page.getByText("Login");
+    this.usernameInput = page.getByTestId("username");
+    this.passwordInput = page.getByTestId("password");
+    this.submitButton = page.getByTestId("login-button");
   }
 
   /**
-   * This method performs the login action, the username and the password
-   * are parameters mandatories
-   * @param {string} username @param {string} password
+   * Loggining into the saucelabs webpage test.
+   * 
+   * @param {string} username - Username.
+   * @param {string} password - Password.
    */
   async submitLoginForm(username, password) {
     await this.usernameInput.fill(username);
