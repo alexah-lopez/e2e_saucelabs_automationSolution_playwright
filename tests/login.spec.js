@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("Successful login", async ({ page }) => {
-  const loginPage = new LoginPage(page); //mejor practica
+  const loginPage = new LoginPage(page);
   await loginPage.submitLoginForm("standard_user", "secret_sauce");
   const catalogPage = new CatalogPage(page);
   await expect(catalogPage.productTitle).toHaveText("Products");
