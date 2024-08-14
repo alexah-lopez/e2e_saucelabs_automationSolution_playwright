@@ -12,9 +12,6 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   /* Changing the selector getByTestId to data-test */
-  use: {
-    testIdAttribute: 'data-test'
-  },
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -33,6 +30,7 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+     testIdAttribute: 'data-test',
   },
 
   /* Configure projects for major browsers */
@@ -46,7 +44,7 @@ module.exports = defineConfig({
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-
+    
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
