@@ -15,6 +15,13 @@ test("Successful login", async ({ page }) => {
   await expect(catalogPage.productTitle).toHaveText("Products");
 });
 
+test("Unsuccessful login", async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.submitLoginForm("standard_user", "wrong");
+  const catalogPage = new CatalogPage(page);
+  await expect(loginPage.errorLabel).toHaveText("Epic sadface: Username and password do not match any user in this service");
+});
+
 test("Successful logout", async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.submitLoginForm("standard_user", "secret_sauce");
