@@ -8,34 +8,46 @@ class CatalogPage {
   constructor(page) {
     this.productTitle = page.getByTestId("title");
     this.productPrices = page.getByTestId("inventory-item-price");
-    this.orderByLocator = page.getByTestId("product-sort-container");
-    this.orderByAscendentOptionLocator = page.getByRole('option', { name: 'Price (low to high)' });
+    this.dropdown = page.locator("//select[@data-test='product-sort-container']");
   }
 
-  async productos(){
+  async getPriceListArray(){
     const priceItemsArray = [];
     for(let item of await this.productPrices.all()){
       const price  = await item.innerText();
       const priceFloat = parseFloat(price.replace("$", ""));
       priceItemsArray.push(priceFloat);
     }
-    console.log(priceItemsArray);
-    this.orderArray(priceItemsArray);
+    return priceItemsArray;
   }
 
-  async orderArray(itemsPriceArray){
+  async orderArrayAscending(itemsPriceArray){
     var pricceItemOrdered = itemsPriceArray.sort(function (a,b) {
       return a - b; // Ascending
   });;
-    console.log(pricceItemOrdered);
-
+  return pricceItemOrdered;
   }
 
-  async orderByAscending(){
-    await this.orderByLocator.click();
-    //await this.orderByLocator.selectOption({value: 'lohi'}).click();
-    await this.orderByAscendentOptionLocator.waitFor(); 
+  async selectOrderBy(){
+    await this.dropdown.selectOption('Price (low to high)');
   }
 
+  async compareArrays(pricesOrdered, pricesOrderByWebPage){
+      if(JSON.stringify(pricesOrdered) === JSON.stringify(pricesOrderByWebPage))
+        { return true;
+        }
+        else{
+          return false;
+        }
+  }
+
+  async valdateOrderByPriceLowToHigh(page){
+    let priceOrderedArray = await this.getPriceListArray();
+    priceOrderedArray = await this.orderArrayAscending(priceOrderedArray);
+    await this.selectOrderBy(page);
+    let itemsPriceArray = await this.getPriceListArray();
+    return this.compareArrays(itemsPriceArray,priceOrderedArray);
+  }
+  
 }
 export default CatalogPage;
