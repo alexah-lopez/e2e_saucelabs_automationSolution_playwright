@@ -44,10 +44,10 @@ class CatalogPage {
   async valdateOrderByPriceLowToHigh(page){
     let priceOrderedArray = await this.getPriceListArray();
     priceOrderedArray = await this.orderArrayAscending(priceOrderedArray);
-    await this.selectOrderBy(page);
+    await this.selectOrderBy();
     let itemsPriceArray = await this.getPriceListArray();
     return this.compareArrays(itemsPriceArray,priceOrderedArray);
   }
-  
+
 }
 export default CatalogPage;
