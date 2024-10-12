@@ -18,7 +18,7 @@ test("Validate order by price low to high", async ({ page }) => {
   const utils = new Utils();
   let priceOrderedArray = await catalogPage.getPricesList();
   priceOrderedArray = await catalogPage.orderArrayAscending(priceOrderedArray);
-  await catalogPage.selectOrderBy();
-  let itemsPriceArray = await catalogPage.getPriceListArray();
+  await catalogPage.selectOrderBy("lohi");
+  let itemsPriceArray = await catalogPage.getPricesList();
   expect (await utils.compareTwoArrays(priceOrderedArray,itemsPriceArray)).toBe(true);
 });

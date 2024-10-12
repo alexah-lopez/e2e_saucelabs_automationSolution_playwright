@@ -40,8 +40,14 @@ class CatalogPage {
  /**
    * Select order by option in the DOM
    */
-  async selectOrderBy(){
-    await this.dropdown.selectOption('Price (low to high)');
+  async selectOrderBy(orderByoption){
+    switch(orderByoption)
+    {
+     case "lohi":
+      await this.dropdown.selectOption('Price (low to high)');
+      break;
+    }
+    
   }
 }
 export default CatalogPage;
