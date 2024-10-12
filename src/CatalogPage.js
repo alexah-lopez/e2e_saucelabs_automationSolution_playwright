@@ -33,7 +33,7 @@ class CatalogPage {
   async orderArrayAscending(itemsPriceArray){
     let orderedList = itemsPriceArray.sort(function (a,b) {
       return a - b; // Ascending
-  });;
+  });
   return orderedList;
   }
 
