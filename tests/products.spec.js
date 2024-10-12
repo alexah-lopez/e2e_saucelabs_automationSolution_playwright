@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import CatalogPage from "../src/CatalogPage";
 import LoginPage from "../src/loginPage";
+import Utils from "../src/helpers/utils";
 
 
 test.beforeEach(async ({ page }) => {
@@ -14,5 +15,10 @@ test.beforeEach(async ({ page }) => {
 
 test("Validate order by price low to high", async ({ page }) => {
   const catalogPage = new CatalogPage(page);
-  await expect (await catalogPage.valdateOrderByPriceLowToHigh(page)).toBe(true);
+  const utils = new Utils();
+  let priceOrderedArray = await catalogPage.getPriceListArray();
+  priceOrderedArray = await catalogPage.orderArrayAscending(priceOrderedArray);
+  await catalogPage.selectOrderBy();
+  let itemsPriceArray = await catalogPage.getPriceListArray();
+  expect (await utils.compareTwoArrays(priceOrderedArray,itemsPriceArray)).toBe(true);
 });
