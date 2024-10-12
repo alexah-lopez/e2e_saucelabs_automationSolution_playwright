@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 test("Validate order by price low to high", async ({ page }) => {
   const catalogPage = new CatalogPage(page);
   const utils = new Utils();
-  let priceOrderedArray = await catalogPage.getPriceListArray();
+  let priceOrderedArray = await catalogPage.getPricesList();
   priceOrderedArray = await catalogPage.orderArrayAscending(priceOrderedArray);
   await catalogPage.selectOrderBy();
   let itemsPriceArray = await catalogPage.getPriceListArray();

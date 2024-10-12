@@ -15,7 +15,7 @@ class CatalogPage {
    * to float values
    * @return {!Array<TYPE>} - priceItemsArray
    */
-  async getPriceListArray(){
+  async getPricesList(){
     const priceItemsArray = [];
     for(let item of await this.productPrices.all()){
       const price  = await item.innerText();
