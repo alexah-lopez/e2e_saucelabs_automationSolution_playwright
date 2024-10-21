@@ -15,7 +15,7 @@ test("Successful login", async ({ page }) => {
   await expect(catalogPage.productTitle).toHaveText("Products");
 });
 
-test("Unsuccessful login", async ({ page }) => {
+test("Login with invalid credentials", async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.submitLoginForm("standard_user", "wrong");
   const catalogPage = new CatalogPage(page);
