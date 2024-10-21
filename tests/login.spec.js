@@ -17,15 +17,17 @@ test("Successful login", async ({ page }) => {
 
 test("Login with invalid credentials", async ({ page }) => {
   const loginPage = new LoginPage(page);
-  await loginPage.submitLoginForm("standard_user", "wrong123");
-  await expect(loginPage.errorMessage).toHaveText("Epic sadface: Username and password do not match any user in this service");
+  await loginPage.submitLoginForm("standard_user", "wrong");
+  const catalogPage = new CatalogPage(page);
+  await expect(loginPage.errorLabel).toHaveText("Epic sadface: Username and password do not match any user in this service");
 });
 
-test("LogOut", async ({ page }) => {
+test("Successful logout", async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.submitLoginForm("standard_user", "secret_sauce");
-  await page.waitForTimeout(2000);
+  const catalogPage = new CatalogPage(page);
+  await expect(catalogPage.productTitle).toHaveText("Products");
   const menuPage = new MenuPage(page);
   await menuPage.logginOut();
-  await expect(loginPage.usernameInput).toBeVisible();
+  await expect(loginPage.submitButton).toBeVisible();
 });
