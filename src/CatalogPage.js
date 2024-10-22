@@ -1,3 +1,5 @@
+import Utils from "../src/helpers/Utils"
+
 /**
  * This class obtains the elements in the DOM for the
  * catalog page using different locators
@@ -13,7 +15,7 @@ class CatalogPage {
    * Obtaining the price for all the products and adding them 
    * into an array, removing the $ symbol and converting the data 
    * to float values
-   * @return {!Array<TYPE>} - priceItemsArray
+   * @return {Array} - priceItemsArray
    */
   async getPricesList(){
     const priceItemsArray = [];
@@ -28,7 +30,7 @@ class CatalogPage {
  /**
    * Order by ascending the price list 
    * into an array
-   * @return {!Array<TYPE>} - priceItemOrdered
+   * @return {Array} - priceItemOrdered
    */
   async orderArrayAscending(itemsPriceArray){
     let orderedList = itemsPriceArray.sort(function (a,b) {
@@ -39,6 +41,7 @@ class CatalogPage {
 
  /**
    * Select order by option in the DOM
+   * @param {String} orderByoption - Order by option value
    */
   async selectOrderBy(orderByoption){
     switch(orderByoption)
@@ -48,6 +51,17 @@ class CatalogPage {
       break;
     }
     
+  }
+
+ /**
+   * Comparing two price lists.
+   * @param {Array} priceList1 - Current price list.
+   * @param {Array} priceList2 - Price list ordered.
+   * @return {Boolean}  - result of comparation
+   */
+  compareThePriceLists(priceList1 , priceList2){
+    const utils = new Utils();
+    return utils.compareTwoArrays(priceList1,priceList2);
   }
 }
 export default CatalogPage;
