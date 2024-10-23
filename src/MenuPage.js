@@ -9,7 +9,7 @@ class MenuPage {
     }
   
     /**
-     * Logging out of the saucelabs webpage.
+     * Logging out of the saucelabs webpage
      */
     async logginOut() {
       await this.menuButton.click();

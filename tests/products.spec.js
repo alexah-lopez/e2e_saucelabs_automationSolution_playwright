@@ -2,8 +2,6 @@ import { test, expect } from "@playwright/test";
 import CatalogPage from "../src/CatalogPage";
 import LoginPage from "../src/loginPage";
 
-
-
 test.beforeEach(async ({ page }) => {
   console.log(`Running ${test.info().title}`);
   await page.goto("https://www.saucedemo.com/");
@@ -15,9 +13,9 @@ test.beforeEach(async ({ page }) => {
 
 test("Validate order by price low to high", async ({ page }) => {
   const catalogPage = new CatalogPage(page);
-  let priceOrderedArray = await catalogPage.getPricesList();
-  priceOrderedArray = await catalogPage.orderArrayAscending(priceOrderedArray);
+  let priceOrderedList = await catalogPage.getPricesList();
+  priceOrderedList = await catalogPage.orderArrayAscending(priceOrderedList);
   await catalogPage.selectOrderBy("lohi");
-  let itemsPriceArray = await catalogPage.getPricesList();
-  expect (catalogPage.compareThePriceLists(priceOrderedArray,itemsPriceArray)).toBe(true);
+  let itemsPriceList = await catalogPage.getPricesList();
+  expect (catalogPage.compareThePriceLists(priceOrderedList,itemsPriceList)).toBe(true);
 });

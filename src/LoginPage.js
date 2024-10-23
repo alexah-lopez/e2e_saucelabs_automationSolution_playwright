@@ -14,8 +14,8 @@ class LoginPage {
   /**
    * Loggining into the saucelabs webpage test.
    * 
-   * @param {string} username - Username.
-   * @param {string} password - Password.
+   * @param {string} username - Username
+   * @param {string} password - Password
    */
   async submitLoginForm(username, password) {
     await this.usernameInput.fill(username);

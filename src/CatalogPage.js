@@ -18,13 +18,13 @@ class CatalogPage {
    * @return {Array} - priceItemsArray
    */
   async getPricesList(){
-    const priceItemsArray = [];
+    const priceItemsList = [];
     for(let item of await this.productPrices.all()){
       const price  = await item.innerText();
       const priceFloat = parseFloat(price.replace("$", ""));
-      priceItemsArray.push(priceFloat);
+      priceItemsList.push(priceFloat);
     }
-    return priceItemsArray;
+    return priceItemsList;
   }
 
  /**
@@ -32,8 +32,8 @@ class CatalogPage {
    * into an array
    * @return {Array} - priceItemOrdered
    */
-  async orderArrayAscending(itemsPriceArray){
-    let orderedList = itemsPriceArray.sort(function (a,b) {
+  async orderArrayAscending(itemsPriceList){
+    let orderedList = itemsPriceList.sort(function (a,b) {
       return a - b; // Ascending
   });
   return orderedList;
@@ -55,9 +55,9 @@ class CatalogPage {
 
  /**
    * Comparing two price lists.
-   * @param {Array} priceList1 - Current price list.
-   * @param {Array} priceList2 - Price list ordered.
-   * @return {Boolean}  - result of comparation
+   * @param {Array} priceList1 - Current price list
+   * @param {Array} priceList2 - Price list ordered
+   * @return {Boolean}  - result of comparison
    */
   compareThePriceLists(priceList1 , priceList2){
     const utils = new Utils();
