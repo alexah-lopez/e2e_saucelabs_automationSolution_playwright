@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import CatalogPage from "../src/CatalogPage";
-import LoginPage from "../src/loginPage";
+import LoginPage from "../src/LoginPage";
 
 test.beforeEach(async ({ page }) => {
   console.log(`Running ${test.info().title}`);
