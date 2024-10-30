@@ -1,5 +1,4 @@
 class Utils {
-
   /**
    * Compare two arrays
    */
