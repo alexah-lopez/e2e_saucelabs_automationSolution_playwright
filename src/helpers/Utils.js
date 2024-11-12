@@ -10,4 +10,13 @@ class Utils {
         return false;
       }
     }
+
+  /**
+   * Generates a random number from 0 to the limit
+   * @param {Int} limit - Max value the random number can be
+   * @return {Int}  - random number
+   */
+  generateARandomNumber(limit){
+    return Math.floor(Math.random()*limit);
+  }  
 }export default Utils;

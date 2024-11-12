@@ -27,3 +27,10 @@ Programing language:
 ### Installation
 - Clone the repository : https://github.com/AlexaLopez-S/e2e_saucelabs_automationSolution_playwright 
 
+- Install the following:
+    - npm install  dotenv  --save-dev
+
+- Add a .env file in the env folder with the following information:
+   - USERNAME=""
+   - PASSWORD=""
+

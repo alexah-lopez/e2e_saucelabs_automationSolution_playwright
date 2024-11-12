@@ -1,5 +1,4 @@
-import Utils from "../src/helpers/Utils"
-
+import Utils from "./helpers/utils";
 /**
  * This class obtains the elements in the DOM for the
  * catalog page using different locators
@@ -10,6 +9,9 @@ class CatalogPage {
     this.productPrices = page.getByTestId("inventory-item-price");
     this.orderByDropDown = page.locator("//select[@data-test='product-sort-container']");
     this.addButton = page.locator("//button[text()='Add to cart']");
+    this.productName = page.getByTestId("inventory-item-name");
+    this.productDescription = page.getByTestId("inventory-item-desc");
+    this.productPrice = page.getByTestId("inventory-item-price");
   }
 
    /**
@@ -78,13 +80,44 @@ class CatalogPage {
     return utils.compareTwoArrays(priceList1,priceList2);
   }
 
-  async addRandomProductNumberToCart(){
-      const productNumber = await this.addButton.count();
-      const productRandomNumber = Math.floor(Math.random()*productNumber) + 1
-      for(let item of productNumber){
-        console.log(item);
+   /**
+   * Add random number of products to the cart
+   * by clicking on Add to cart button
+   * @param {Int} productRandomNumber - Number of products to add
+   */
+  async addRandomProductNumberToCart(productRandomNumber){
+      for(var item = productRandomNumber-1; item >= 0; item --){
+        await this.addButton.nth(item).click();
       }
     }
+
+     /**
+   * Get a random number from 0 to the total number of product 
+   * displayed in the catalog
+   * @return {Int}  - Random number generated
+   */
+    async getRandomProductNumber(){
+      const productsTotal = await this.addButton.count();
+      const utils = new Utils();
+      return utils.generateARandomNumber(productsTotal);
+    }
+
+  /**
+   * Add one random product to the cart
+   * by clicking on Add to cart button
+   * @param {Int} productRandomNumber - Product random number
+   * @return {Array}  - Product properties 
+   * Name, Description and Price
+   */
+  async addARandomProductToCart(productRandomNumber){
+    const itemProperties = [
+      await this.productName.nth(productRandomNumber).innerText(),
+      await this.productDescription.nth(productRandomNumber).innerText(),
+      await this.productPrice.nth(productRandomNumber).innerText()
+    ] 
+    await this.addButton.nth(productRandomNumber).click();
+    return itemProperties;
+  }
   
 }
 export default CatalogPage;
