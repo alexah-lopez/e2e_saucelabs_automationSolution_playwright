@@ -1,4 +1,4 @@
-class CheckoutPartTwo{
+class CheckoutOverview{
     constructor(page){
         this.finishButton = page.getByTestId("finish");
     }
@@ -10,4 +10,4 @@ class CheckoutPartTwo{
         await this.finishButton.click();
     }
 }
-export default CheckoutPartTwo;
+export default CheckoutOverview;

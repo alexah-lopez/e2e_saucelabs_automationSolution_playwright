@@ -1,11 +1,10 @@
 import { test, expect } from "@playwright/test";
 import CatalogPage from "../src/CatalogPage";
 import LoginPage from "../src/LoginPage";
-import {SortInventoryBy} from "../src/helpers/SortInventory";
 import NavBarPage from "../src/NavBarPage";
 import CartPage from "../src/CartPage";
-import CheckoutPartOne from "../src/CheckoutPartOnePage";
-import CheckoutPartTwo from "../src/CheckoutPartTwoPage";
+import CheckoutYourInformation from "../src/CheckoutYourInformation";
+import CheckoutOverview from "../src/CheckoutOverview";
 import CheckoutComplete from "../src/CheckoutComplete";
 
 test.beforeEach(async ({ page }) => {
@@ -33,15 +32,15 @@ test("Complete purchase", async ({ page }) => {
   const catalogPage = new CatalogPage(page);
   const navBar = new NavBarPage(page);
   const cartPage = new CartPage(page);
-  const checkoutPartOne = new CheckoutPartOne(page);
-  const checkoutPartTwo = new CheckoutPartTwo(page);
+  const checkoutYourInformation = new CheckoutYourInformation(page);
+  const checkoutOverview = new CheckoutOverview(page);
   const checkoutComplete = new CheckoutComplete(page);
   const randomProductNumber = await catalogPage.getRandomProductNumber();
   await catalogPage.addRandomProductNumberToCart(randomProductNumber);
   await navBar.clickCartIcon();
   await cartPage.clickCheckoutButton();
-  await checkoutPartOne.fillCheckoutForm(process.env.USERNAME, process.env.PASSWORD,process.env.POSTALCODE);  
-  await checkoutPartTwo.clickFinishButton();
+  await checkoutYourInformation.fillCheckoutForm(process.env.USERNAME, process.env.PASSWORD,process.env.POSTALCODE);  
+  await checkoutOverview.clickFinishButton();
   expect (await checkoutComplete.getSuccessText()).toBe("Thank you for your order!");
 
 });

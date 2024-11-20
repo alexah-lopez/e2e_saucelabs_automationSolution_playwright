@@ -1,4 +1,4 @@
-class CheckoutPartOne{
+class CheckoutYourInformation{
     constructor(page){
         this.firstName = page.getByTestId("firstName");
         this.lastName = page.getByTestId("lastName");
@@ -21,4 +21,4 @@ class CheckoutPartOne{
 
 
 }
-export default CheckoutPartOne;
+export default CheckoutYourInformation;
