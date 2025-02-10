@@ -8,6 +8,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    environment : Production
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -18,7 +19,11 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      env:
+        USERNAME: ${{secrets.USERNAME}}
+        PASSWORD: ${{secrets.USERNAME}}
+        POSTALCODE: ${{env.POSTALCODE}}
+      run: USERNAME='${USERNAME}' PASSWORD='${PASSWORD}' POSTALCODE='${POSTALCODE}' npx playwright test
     - uses: actions/upload-artifact@v4
       if: always()
       with:
