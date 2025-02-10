@@ -22,7 +22,7 @@ jobs:
       env:
         USERNAME: ${{secrets.USERNAME}}
         PASSWORD: ${{secrets.USERNAME}}
-        POSTALCODE: ${{env.POSTALCODE}}
+        POSTALCODE: ${{secrets.POSTALCODE}}
       run: USERNAME='${USERNAME}' PASSWORD='${PASSWORD}' POSTALCODE='${POSTALCODE}' npx playwright test
     - uses: actions/upload-artifact@v4
       if: always()
